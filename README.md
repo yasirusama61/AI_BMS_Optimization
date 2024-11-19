@@ -21,24 +21,25 @@ This project is part of the **AI Battery Management System (AI BMS)** initiative
 ```plaintext
 AI_BMS_Optimization/
 │
-├── data/               # Raw and processed data
-│   ├── raw/            # Store your initial datasets
-│   └── processed/      # Processed or cleaned data
+├── data/               # Data storage
+│   ├── raw/            # Raw input data
+│   ├── processed/      # Preprocessed data ready for use
+│   └── sample_input.csv # Example data for testing
 │
 ├── src/                # Source code
-│   ├── gui.py          # GUI development using PyQt/Tkinter
-│   ├── models.py       # AI models for battery optimization
-│   ├── mode_selection.py # Core logic for different modes
-│   ├── data_processing.py # Scripts for data cleaning and feature extraction
+│   ├── gui.py          # GUI implementation (PyQt/Tkinter)
+│   ├── real_time_mode_switching.py # Core script for mode switching
+│   ├── models.py       # Includes SOC and temperature prediction models
+│   ├── utils.py        # Helper functions (e.g., data preprocessing)
 │
-├── visualization/      # Matplotlib visualizations
-│   └── performance_visuals.py # Real-time graphs displaying performance metrics
+├── docs/               # Documentation
+│   └── README.md       # Description, usage, and instructions
 │
-├── docs/               # Documentation files
-│   └── README.md        # Project description and usage instructions
+├── tests/              # Test scripts
+│   ├── test_models.py  # Unit tests for SOC and temperature models
 │
-├── .gitignore          # Git ignore file
-└── requirements.txt    # List of dependencies
+├── requirements.txt    # Dependencies
+└── .gitignore          # Ignore unnecessary files
 ```
 
 ### Modes
@@ -79,3 +80,29 @@ To set up the project locally, follow these steps:
 - **Battery Operation Data**: Voltage, Current, SOC, Temperature, Pump Duty Cycle, and Fan Speed.
 - **Environmental Data**: Ambient temperature data (Tx) to dynamically adjust system performance.
 - **Historical Performance Data**: Used to train the AI models on performance metrics under different conditions.
+
+
+## Real-Time Output Example
+
+The real-time mode-switching script dynamically predicts battery **SOC (State of Charge)** and **Temperature**, adjusts cooling intensity, and ensures safe operation based on the selected mode. Below is an example of the real-time output with **warnings** and **mode-specific adjustments**:
+
+### Highlighted Output:
+
+- **Mode**: Indicates the active mode (`Balanced`, `Performance`, or `Eco`).
+- **Predicted Temp**: Temperature predicted by the AI model.
+- **Cooling Intensity**: Adjusted cooling strategy (`Low` or `High`).
+- **Adjusted Current**: Current draw adjustment based on the mode's constraints.
+- **Warnings**: Alerts when thresholds are exceeded (e.g., temperature limits).
+
+```plaintext
+Step 0: Mode: Balanced, Predicted Temp: 25.21°C, Cooling: Low, Adjusted Current: 35.00 A
+Step 1: Mode: Balanced, Predicted Temp: 34.70°C, Cooling: High, Adjusted Current: 35.00 A
+⚠️ Warning: Exceeding temperature limit in Balanced mode
+Step 2: Mode: Balanced, Predicted Temp: 38.89°C, Cooling: High, Adjusted Current: 35.00 A
+Step 3: Mode: Balanced, Predicted Temp: 32.04°C, Cooling: Low, Adjusted Current: 35.00 A
+Step 4: Mode: Balanced, Predicted Temp: 34.95°C, Cooling: High, Adjusted Current: 35.00 A
+Step 13: Mode: Balanced, Predicted Temp: 36.47°C, Cooling: High, Adjusted Current: 35.00 A
+⚠️ Warning: Exceeding temperature limit in Balanced mode
+Step 14: Mode: Balanced, Predicted Temp: 37.52°C, Cooling: High, Adjusted Current: 35.00 A
+Step 22: Mode: Balanced, Predicted Temp: 36.20°C, Cooling: High, Adjusted Current: 35.00 A
+```
