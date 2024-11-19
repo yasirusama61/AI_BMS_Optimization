@@ -1,0 +1,23 @@
+# Core Dependencies
+numpy==1.23.5            # For numerical computations
+pandas==1.5.3            # For data manipulation and processing
+matplotlib==3.6.3        # For visualizations
+
+# AI Model and Machine Learning
+tensorflow==2.11.0       # For building and loading the SOC and temperature prediction models
+scikit-learn==1.2.0      # For data preprocessing and feature scaling
+
+# GUI Development
+PyQt5==5.15.7            # For GUI creation
+PyQt5-sip==12.11.0       # Required for PyQt5 compatibility
+
+# Logging and Monitoring
+loguru==0.6.0            # For advanced logging and warnings
+
+# Optional for Future Expansion
+plotly==5.11.0           # For interactive visualizations (if needed in GUI)
+dash==2.7.0              # For web-based visualization (optional)
+
+# Testing and Validation
+pytest==7.2.0            # For unit tests
+pytest-cov==4.0.0        # For test coverage reporting

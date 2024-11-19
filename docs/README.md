@@ -168,30 +168,53 @@ To set up the project locally, follow these steps:
 - **Historical Performance Data**: Used to train the AI models on performance metrics under different conditions.
 
 
-## 📊 Real-Time Output
+## 📊 Real-Time Output Example
 
-The real-time mode-switching script dynamically predicts battery **SOC (State of Charge)** and **Temperature**, adjusts cooling intensity, and ensures safe operation based on the selected mode. Below is an example of the real-time output with **warnings** and **mode-specific adjustments**:
+The AI Battery Management System (AI BMS) provides real-time predictions and dynamically adjusts battery parameters based on the selected mode. Below is an example of the output generated during a simulation:
 
-### Highlighted Output:
+### 🔍 **Highlighted Output**
 
-- **Mode**: Indicates the active mode (`Balanced`, `Performance`, or `Eco`).
-- **Predicted Temp**: Temperature predicted by the AI model.
-- **Cooling Intensity**: Adjusted cooling strategy (`Low` or `High`).
-- **Adjusted Current**: Current draw adjustment based on the mode's constraints.
-- **Warnings**: Alerts when thresholds are exceeded (e.g., temperature limits).
+- **Mode**: Balanced
+- **Predicted Temperature (°C)**: Real-time temperature predictions using the AI model.
+- **Cooling**: Cooling intensity automatically adjusted (`Low` or `High`).
+- **Adjusted Current (A)**: Battery current modified dynamically.
+- **Warnings**: Alerts for exceeding critical thresholds.
 
-```plaintext
-Step 0: Mode: Balanced, Predicted Temp: 25.21°C, Cooling: Low, Adjusted Current: 35.00 A
-Step 1: Mode: Balanced, Predicted Temp: 34.70°C, Cooling: High, Adjusted Current: 35.00 A
-⚠️ Warning: Exceeding temperature limit in Balanced mode
-Step 2: Mode: Balanced, Predicted Temp: 38.89°C, Cooling: High, Adjusted Current: 35.00 A
-Step 3: Mode: Balanced, Predicted Temp: 32.04°C, Cooling: Low, Adjusted Current: 35.00 A
-Step 4: Mode: Balanced, Predicted Temp: 34.95°C, Cooling: High, Adjusted Current: 35.00 A
-Step 13: Mode: Balanced, Predicted Temp: 36.47°C, Cooling: High, Adjusted Current: 35.00 A
-⚠️ Warning: Exceeding temperature limit in Balanced mode
-Step 14: Mode: Balanced, Predicted Temp: 37.52°C, Cooling: High, Adjusted Current: 35.00 A
-Step 22: Mode: Balanced, Predicted Temp: 36.20°C, Cooling: High, Adjusted Current: 35.00 A
-```
+---
+
+### 🖼️ **Sample Output**
+
+| **Step** | **Mode**      | **Predicted Temp** | **Cooling** | **Adjusted Current** | **Warnings**                                         |
+|----------|---------------|--------------------|-------------|-----------------------|-----------------------------------------------------|
+| 0        | Balanced      | 25.21°C           | Low         | 35.00 A              |                                                     |
+| 1        | Balanced      | 34.70°C           | High        | 35.00 A              |                                                     |
+| 2        | Balanced      | 38.89°C           | High        | 35.00 A              | ⚠️ Exceeding temperature limit in Balanced mode     |
+| 3        | Balanced      | 32.04°C           | Low         | 35.00 A              |                                                     |
+| 4        | Balanced      | 34.95°C           | High        | 35.00 A              |                                                     |
+| 13       | Balanced      | 36.47°C           | High        | 35.00 A              | ⚠️ Exceeding temperature limit in Balanced mode     |
+| 14       | Balanced      | 37.52°C           | High        | 35.00 A              | ⚠️ Exceeding temperature limit in Balanced mode     |
+| 22       | Balanced      | 36.20°C           | High        | 35.00 A              | ⚠️ Exceeding temperature limit in Balanced mode     |
+
+---
+
+### 🚨 **What These Outputs Show**
+
+1. **Real-Time Adjustments**:
+   - The system adjusts cooling intensity and current dynamically based on real-time predictions.
+   - `High Cooling` is activated when the predicted temperature exceeds the mode's threshold.
+
+2. **Warnings**:
+   - Alerts (`⚠️`) indicate when critical thresholds (e.g., temperature limits) are exceeded.
+
+3. **Insight into Mode Functionality**:
+   - The `Balanced Mode` prioritizes stability with controlled cooling and current.
+
+---
+
+### 📝 **Insights for Developers**
+
+- The table demonstrates the AI system's capability to adapt to dynamic battery conditions in real time.
+- Warnings help highlight potential issues that require attention, such as exceeding the temperature threshold.
 
 ## 🤝 Contributing
 We welcome contributions! Please feel free to fork the repository, submit pull requests, or report issues.
