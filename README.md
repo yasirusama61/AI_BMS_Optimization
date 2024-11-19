@@ -156,3 +156,6 @@ Step 13: Mode: Balanced, Predicted Temp: 36.47°C, Cooling: High, Adjusted Curre
 Step 14: Mode: Balanced, Predicted Temp: 37.52°C, Cooling: High, Adjusted Current: 35.00 A
 Step 22: Mode: Balanced, Predicted Temp: 36.20°C, Cooling: High, Adjusted Current: 35.00 A
 ```
+
+## 🤝 Contributing
+We welcome contributions! Please feel free to fork the repository, submit pull requests, or report issues.
