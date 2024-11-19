@@ -24,7 +24,7 @@ Modes dynamically adjust parameters such as **cooling**, **fan speed**, and **te
 
 Below is a prototype of the **AI Battery Management System (AI BMS)** optimization interface:
 
-![UI Prototype](images/ui_prototype.png)
+![UI Prototype](../images/ui_prototype.png)
 
 ### Key Features of the Interface:
 
