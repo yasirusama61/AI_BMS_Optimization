@@ -74,6 +74,59 @@ Below is a prototype of the **AI Battery Management System (AI BMS)** optimizati
 
 ---
 
+## 🔄 AI-Based Mode Selection
+
+In this project, we replaced the static threshold-based mode selection logic with a **Machine Learning (ML)** model. The ML model dynamically selects the optimal mode (**Performance**, **Eco**, or **Balanced**) based on real-time battery conditions, including **SOC (State of Charge)**, **temperature**, and **current**.
+
+### 📊 Data for Mode Selection
+
+The training dataset for the mode selection model includes the following key features:
+
+| **Feature**       | **Description**                               |
+|--------------------|-----------------------------------------------|
+| `SOC`             | State of Charge (%)                          |
+| `Temperature`     | Predicted battery temperature (°C)           |
+| `Current`         | Current draw (A)                             |
+| `CoolingIntensity`| Required cooling intensity (e.g., Low/High)  |
+| `Mode`            | Target mode (`Performance`, `Eco`, `Balanced`)|
+
+Here’s a snapshot of the data used to train the mode selection model:
+
+| **SOC** | **Temperature (°C)** | **Current (A)** | **CoolingIntensity** | **Mode**        |
+|---------|-----------------------|-----------------|-----------------------|-----------------|
+| 80      | 32.5                 | 40              | Low                   | Performance     |
+| 65      | 28.0                 | 25              | Low                   | Eco             |
+| 72      | 30.0                 | 35              | High                  | Balanced        |
+| 85      | 37.0                 | 50              | High                  | Performance     |
+
+---
+
+### 🛠️ How the AI Model Works
+1. **Input Features**: The model takes SOC, temperature, and current as input.
+2. **Prediction**: Based on historical training data, the model predicts the optimal mode.
+3. **Dynamic Adjustments**:
+   - Cooling intensity and current are adjusted dynamically based on the selected mode.
+   - Warnings are generated for exceeding critical thresholds.
+
+---
+
+### 📈 Advantages of AI-Based Mode Selection
+- **Dynamic Decision-Making**: The model adapts to real-time battery conditions for optimal performance.
+- **Proactive Adjustments**: Predicts potential issues and makes adjustments before they occur.
+- **Improved Efficiency**: Balances battery performance, efficiency, and longevity better than static thresholds.
+
+---
+
+### 🖼️ Visualization
+Below is a **snapshot** of real-time output based on AI-driven mode selection:
+
+```plaintext
+Step 0: Mode: Balanced, Predicted Temp: 34.50°C, Cooling: Low, Adjusted Current: 35.00 A
+Step 1: Mode: Performance, Predicted Temp: 39.20°C, Cooling: High, Adjusted Current: 40.00 A
+⚠️ Warning: Exceeding temperature limit in Performance mode
+
+---
+
 ## 📂 **Project Structure**
 ```plaintext
 AI_BMS_Optimization/
