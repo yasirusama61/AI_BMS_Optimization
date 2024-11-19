@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 import tensorflow as tf
 from models import predict_soc, predict_temperature  # Ensure models.py has these functions
+from joblib import load  # For loading the pre-trained mode selection model
 
 # Step 1: Load and preprocess data
 data = pd.read_csv('data/battery_data_realistic.csv')
@@ -34,56 +35,57 @@ def create_sequences(data, sequence_length):
 
 X = create_sequences(data, sequence_length)
 
-# Step 4: Define Mode Logic
-modes = {
-    'Performance': {
-        'cooling_threshold': 35,
-        'max_current': 50,
-        'max_temp': 40,
-    },
-    'Eco': {
-        'cooling_threshold': 30,
-        'max_current': 20,
-        'max_temp': 35,
-    },
-    'Balanced': {
-        'cooling_threshold': 33,
-        'max_current': 35,
-        'max_temp': 37,
-    }
-}
+# Step 4: Load Pre-trained Mode Selection Model
+mode_selection_model = load("models/mode_selection_model.pkl")
 
-def select_mode(predicted_temp, predicted_soc, current, mode='Balanced'):
-    mode_params = modes[mode]
+# AI-based mode selection logic
+def select_mode_ai(predicted_temp, predicted_soc, current):
+    """
+    Use the AI model to select the optimal mode dynamically.
+    :param predicted_temp: Predicted temperature
+    :param predicted_soc: Predicted state of charge
+    :param current: Current draw
+    :return: Selected mode, cooling intensity, and adjusted current
+    """
+    # Prepare input features for mode selection model
+    mode_input = np.array([[predicted_temp, predicted_soc, current]])
     
-    # Cooling adjustments
-    cooling_intensity = 'High' if predicted_temp > mode_params['cooling_threshold'] else 'Low'
-    
-    # Adjust current based on mode constraints
-    adjusted_current = min(current, mode_params['max_current'])
-    
-    # Temperature warnings
-    if predicted_temp > mode_params['max_temp']:
-        print(f"Warning: Exceeding temperature limit in {mode} mode")
-    
-    return cooling_intensity, adjusted_current
+    # Predict the optimal mode
+    selected_mode = mode_selection_model.predict(mode_input)[0]
+
+    # Define parameters for each mode
+    mode_params = {
+        'Performance': {'cooling_threshold': 35, 'max_current': 50, 'max_temp': 40},
+        'Eco': {'cooling_threshold': 30, 'max_current': 20, 'max_temp': 35},
+        'Balanced': {'cooling_threshold': 33, 'max_current': 35, 'max_temp': 37}
+    }
+    params = mode_params[selected_mode]
+
+    # Adjust cooling intensity and current
+    cooling_intensity = 'High' if predicted_temp > params['cooling_threshold'] else 'Low'
+    adjusted_current = min(current, params['max_current'])
+
+    # Warning if temperature exceeds max_temp
+    if predicted_temp > params['max_temp']:
+        print(f"⚠️ Warning: Exceeding temperature limit in {selected_mode} mode")
+
+    return selected_mode, cooling_intensity, adjusted_current
 
 # Step 5: Use Pre-trained Models for Predictions
 for i in range(len(X)):
     # Predict SOC and temperature using pre-trained models
     predicted_soc = predict_soc(X[i])
     predicted_temp = predict_temperature(X[i])
-    
-    # Select mode and adjust parameters
-    current_mode = 'Balanced'
-    cooling_intensity, adjusted_current = select_mode(predicted_temp, predicted_soc, current=40, mode=current_mode)
+
+    # Select mode and adjust parameters dynamically
+    selected_mode, cooling_intensity, adjusted_current = select_mode_ai(predicted_temp, predicted_soc, current=40)
     
     # Print results for each step
-    print(f"Step {i}: Mode: {current_mode}, Predicted Temp: {predicted_temp:.2f}°C, Cooling: {cooling_intensity}, Adjusted Current: {adjusted_current:.2f} A")
+    print(f"Step {i}: Mode: {selected_mode}, Predicted Temp: {predicted_temp:.2f}°C, Cooling: {cooling_intensity}, Adjusted Current: {adjusted_current:.2f} A")
 
 # Step 6: Visualize Results
-# (For demonstration purposes, replace these with actual data from your models)
-y_pred = [predict_soc(x) for x in X]  # Predicted SOC
+# Predicted SOC for visualization
+y_pred = [predict_soc(x) for x in X]
 y_test = data['SOC'][sequence_length:].values  # Actual SOC for comparison
 
 # Plot Actual vs Predicted SOC
