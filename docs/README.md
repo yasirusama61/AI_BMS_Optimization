@@ -120,10 +120,7 @@ Here’s a snapshot of the data used to train the mode selection model:
 ### 🖼️ Visualization
 Below is a **snapshot** of real-time output based on AI-driven mode selection:
 
-```plaintext
-Step 0: Mode: Balanced, Predicted Temp: 34.50°C, Cooling: Low, Adjusted Current: 35.00 A
-Step 1: Mode: Performance, Predicted Temp: 39.20°C, Cooling: High, Adjusted Current: 40.00 A
-⚠️ Warning: Exceeding temperature limit in Performance mode
+![Real-Time Simulation](../images/real_time_simulation.gif)
 
 ---
 
