@@ -105,20 +105,25 @@ This dataset enables the **mode selection model** to make real-time, data-driven
 Here’s a snapshot of the data used to train the mode selection model:
 
 ![Data snapshot](../images/data_snapshot.png)
+
 ---
 
 ### 📋 **Legend**
 
 - **SOC (%)**: State of Charge of the battery (in percentage), indicating the battery's available capacity.
 - **Temperature (°C)**: Battery temperature in Celsius, critical for thermal management.
-- **Current (A)**: 
+- **Current (A)**:  
   - Positive values represent **discharging** (battery providing power).  
   - Negative values represent **charging** (battery receiving power).  
-- **Fan Speed (RPM)**: Cooling system's fan speed in revolutions per minute, reflecting cooling intensity.
-- **Pump Duty Cycle (%)**: The percentage of time the cooling pump is active, influencing heat dissipation.
+- **Fan Speed (RPM)**: Cooling system's fan speed in revolutions per minute, reflecting thermal regulation.
+- **Pump Duty Cycle (%)**: The percentage of time the cooling pump is active, significantly influencing heat dissipation.
+- **Cooling Intensity**: Indicates the required cooling level:  
+  - **High**: Used in `Performance Mode` for aggressive cooling.  
+  - **Medium**: Balanced cooling for moderate conditions.  
+  - **Low**: Energy-efficient cooling, typical for `Eco Mode`.
 - **Mode**:
-  - **Performance**: Optimized for maximum power output and cooling.
-  - **Eco**: Focused on energy efficiency and extending battery life.
+  - **Performance**: Optimized for maximum power output and cooling.  
+  - **Eco**: Focused on energy efficiency and extending battery life.  
   - **Balanced**: A trade-off between performance and energy efficiency.
 
 ---
