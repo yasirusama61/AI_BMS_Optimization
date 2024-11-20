@@ -176,6 +176,47 @@ By leveraging a **state-of-the-art Gradient Boosting Model**, this project achie
 
 ---
 
+#### 📊 **Feature Importance**
+
+Below is a bar chart showing the importance of each feature used in the mode selection model:
+
+![Feature Importance](images/feature_importance.png)
+
+#### 🎯 **Decision Boundary Visualization**
+
+The scatter plot below illustrates how the model predicts modes based on SOC and Temperature:
+
+![Decision Boundary](images/decision_boundary.png)
+
+### 📊 **Analyzing the Plots**
+
+#### **1. Feature Importance Plot**
+- **Temperature**: Most critical factor for mode selection, influencing cooling and performance decisions.
+- **SOC (State of Charge)**: Second most important, reflecting the battery's charge level and its effect on mode choice.
+- **Current**: Moderately significant, affecting charging and discharging scenarios.
+- **Fan Speed**: Least significant, possibly an indirect predictor.
+
+**Insight**: Focus on improving data quality for **Temperature** and **SOC**, and consider simplifying the model by removing less significant features like **Fan Speed**.
+
+---
+
+#### **2. Decision Boundary Visualization**
+- **Regions**:
+  - **Pink**: Performance Mode.
+  - **Green**: Eco Mode.
+  - **Blue**: Balanced Mode.
+- **Observations**:
+  - Clear separation between regions indicates effective classification.
+  - Slight overlap near boundaries may lead to edge case misclassifications.
+
+**Insight**: Optimize the model (e.g., hyperparameter tuning) to improve boundary handling and test with real-world data to ensure robustness.
+
+---
+
+These analyses confirm the importance of the features and demonstrate the model's classification accuracy, reinforcing the ML-driven approach for mode selection.
+
+---
+
 ### 🖼️ Visualization
 Below is a **snapshot** of real-time output based on AI-driven mode selection:
 
