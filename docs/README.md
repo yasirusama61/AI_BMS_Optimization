@@ -92,12 +92,32 @@ The training dataset for the mode selection model includes the following key fea
 
 Here’s a snapshot of the data used to train the mode selection model:
 
-| **SOC** | **Temperature (°C)** | **Current (A)** | **CoolingIntensity** | **Mode**        |
-|---------|-----------------------|-----------------|-----------------------|-----------------|
-| 80      | 32.5                 | 40              | Low                   | Performance     |
-| 65      | 28.0                 | 25              | Low                   | Eco             |
-| 72      | 30.0                 | 35              | High                  | Balanced        |
-| 85      | 37.0                 | 50              | High                  | Performance     |
+
+| **SOC (%)** | **Temperature (°C)** | **Current (A)** | **Fan Speed (RPM)** | **Mode**       |
+|-------------|-----------------------|-----------------|----------------------|----------------|
+| 82          | 34.5                 | 45              | 3000                | Performance    |
+| 60          | 30.2                 | -20             | 1200                | Eco            |
+| 72          | 31.8                 | 30              | 2000                | Balanced       |
+| 85          | 37.2                 | 50              | 3200                | Performance    |
+| 68          | 28.0                 | -15             | 1000                | Eco            |
+| 70          | 32.0                 | 35              | 2200                | Balanced       |
+| 75          | 33.5                 | -25             | 1500                | Eco            |
+| 55          | 27.5                 | -18             | 1000                | Eco            |
+| 78          | 35.8                 | 42              | 2800                | Performance    |
+| 88          | 38.0                 | 55              | 3500                | Performance    |
+
+---
+
+### 📋 **Legend**
+
+- **SOC (%)**: State of Charge of the battery (in percentage).
+- **Temperature (°C)**: Battery temperature in Celsius.
+- **Current (A)**: Positive values represent discharging; negative values represent charging.
+- **Fan Speed (RPM)**: Cooling system's fan speed in revolutions per minute.
+- **Mode**:
+  - **Performance**: Optimized for high power output.
+  - **Eco**: Focused on energy efficiency and longevity.
+  - **Balanced**: A middle ground between performance and efficiency.
 
 ---
 
@@ -114,6 +134,45 @@ Here’s a snapshot of the data used to train the mode selection model:
 - **Dynamic Decision-Making**: The model adapts to real-time battery conditions for optimal performance.
 - **Proactive Adjustments**: Predicts potential issues and makes adjustments before they occur.
 - **Improved Efficiency**: Balances battery performance, efficiency, and longevity better than static thresholds.
+
+---
+
+### 🤖 **Machine Learning Integration**
+
+This project utilizes **Machine Learning (ML)** for **intelligent mode selection**, leveraging a cutting-edge **Gradient Boosting Model (GBM)** for dynamic decision-making. The model predicts the optimal operational mode—**Performance**, **Eco**, or **Balanced**—based on real-time battery conditions.
+
+#### 📊 **Data Utilization**
+The dataset used for training includes the following features:
+- **SOC (State of Charge)**: Battery's charge percentage.
+- **Temperature (°C)**: Real-time battery temperature.
+- **Current (A)**: Positive for discharging, negative for charging.
+- **Fan Speed (RPM)**: Cooling system's operational speed.
+- **Mode (Target)**: Labeled modes (`Performance`, `Eco`, `Balanced`) optimized for specific conditions.
+
+#### 🛠️ **Mode Selection Model Training**
+1. **Objective**:
+   - Train a supervised classification model to dynamically select the optimal mode based on real-time battery data.
+2. **Algorithm**:
+   - **XGBoost (Extreme Gradient Boosting)** was chosen for its speed, accuracy, and ability to handle complex, non-linear data relationships.
+3. **Training Process**:
+   - A labeled dataset with historical battery conditions was used to train the model.
+   - The model's hyperparameters were tuned using **grid search** to achieve optimal performance.
+4. **Outcome**:
+   - The XGBoost model achieved high accuracy in predicting the best mode for various battery conditions.
+   - Feature importance analysis revealed that **Temperature** and **SOC** are the most influential factors.
+
+#### 🚀 **Real-Time Integration**
+- The trained XGBoost model is integrated into the system to process real-time battery data and predict the best mode on the fly.
+- Based on the selected mode:
+  - **Cooling intensity** and **current limits** are dynamically adjusted.
+  - **Warnings** are triggered when critical thresholds (e.g., temperature limits) are exceeded.
+
+#### 🔍 **Benefits of ML-Based Mode Selection**
+- **Dynamic Adjustments**: Modes adapt intelligently to match real-time battery conditions.
+- **Optimized Performance**: Balances high power output, energy efficiency, and battery health.
+- **High Predictive Accuracy**: XGBoost provides robust and reliable predictions even with complex datasets.
+
+By leveraging a **state-of-the-art Gradient Boosting Model**, this project achieves smarter and more adaptive battery management, empowering users with seamless and efficient operation.
 
 ---
 
@@ -234,33 +293,7 @@ The AI Battery Management System (AI BMS) provides real-time predictions and dyn
 
 ### 🖼️ **Sample Output**
 
-Below is a sample dataset showing real-time battery conditions and corresponding mode selections:
-
-| **SOC (%)** | **Temperature (°C)** | **Current (A)** | **Fan Speed (RPM)** | **Mode**       |
-|-------------|-----------------------|-----------------|----------------------|----------------|
-| 82          | 34.5                 | 45              | 3000                | Performance    |
-| 60          | 30.2                 | -20             | 1200                | Eco            |
-| 72          | 31.8                 | 30              | 2000                | Balanced       |
-| 85          | 37.2                 | 50              | 3200                | Performance    |
-| 68          | 28.0                 | -15             | 1000                | Eco            |
-| 70          | 32.0                 | 35              | 2200                | Balanced       |
-| 75          | 33.5                 | -25             | 1500                | Eco            |
-| 55          | 27.5                 | -18             | 1000                | Eco            |
-| 78          | 35.8                 | 42              | 2800                | Performance    |
-| 88          | 38.0                 | 55              | 3500                | Performance    |
-
----
-
-### 📋 **Legend**
-
-- **SOC (%)**: State of Charge of the battery (in percentage).
-- **Temperature (°C)**: Battery temperature in Celsius.
-- **Current (A)**: Positive values represent discharging; negative values represent charging.
-- **Fan Speed (RPM)**: Cooling system's fan speed in revolutions per minute.
-- **Mode**:
-  - **Performance**: Optimized for high power output.
-  - **Eco**: Focused on energy efficiency and longevity.
-  - **Balanced**: A middle ground between performance and efficiency.
+![Sample output readings](../images/sample_output.png)
 
 ---
 
