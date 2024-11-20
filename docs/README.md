@@ -180,13 +180,13 @@ By leveraging a **state-of-the-art Gradient Boosting Model**, this project achie
 
 Below is a bar chart showing the importance of each feature used in the mode selection model:
 
-![Feature Importance](images/feature_importance.png)
+![Feature Importance](../images/feature_importance.png)
 
 #### 🎯 **Decision Boundary Visualization**
 
 The scatter plot below illustrates how the model predicts modes based on SOC and Temperature:
 
-![Decision Boundary](images/decision_boundary.png)
+![Decision Boundary](../images/decision_boundary.png)
 
 ### 📊 **Analyzing the Plots**
 
