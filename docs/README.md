@@ -93,31 +93,34 @@ The training dataset for the mode selection model includes the following key fea
 Here’s a snapshot of the data used to train the mode selection model:
 
 
-| **SOC (%)** | **Temperature (°C)** | **Current (A)** | **Fan Speed (RPM)** | **Mode**       |
-|-------------|-----------------------|-----------------|----------------------|----------------|
-| 82          | 34.5                 | 45              | 3000                | Performance    |
-| 60          | 30.2                 | -20             | 1200                | Eco            |
-| 72          | 31.8                 | 30              | 2000                | Balanced       |
-| 85          | 37.2                 | 50              | 3200                | Performance    |
-| 68          | 28.0                 | -15             | 1000                | Eco            |
-| 70          | 32.0                 | 35              | 2200                | Balanced       |
-| 75          | 33.5                 | -25             | 1500                | Eco            |
-| 55          | 27.5                 | -18             | 1000                | Eco            |
-| 78          | 35.8                 | 42              | 2800                | Performance    |
-| 88          | 38.0                 | 55              | 3500                | Performance    |
+| **SOC (%)** | **Temperature (°C)** | **Current (A)** | **Fan Speed (RPM)** | **Pump Duty Cycle (%)** | **Mode**       |
+|-------------|-----------------------|-----------------|----------------------|--------------------------|----------------|
+| 82          | 34.5                 | 45              | 3000                | 85                       | Performance    |
+| 60          | 30.2                 | -20             | 1200                | 50                       | Eco            |
+| 72          | 31.8                 | 30              | 2000                | 65                       | Balanced       |
+| 85          | 37.2                 | 50              | 3200                | 90                       | Performance    |
+| 68          | 28.0                 | -15             | 1000                | 40                       | Eco            |
+| 70          | 32.0                 | 35              | 2200                | 60                       | Balanced       |
+| 75          | 33.5                 | -25             | 1500                | 55                       | Eco            |
+| 55          | 27.5                 | -18             | 1000                | 35                       | Eco            |
+| 78          | 35.8                 | 42              | 2800                | 80                       | Performance    |
+| 88          | 38.0                 | 55              | 3500                | 95                       | Performance    |
 
 ---
 
 ### 📋 **Legend**
 
-- **SOC (%)**: State of Charge of the battery (in percentage).
-- **Temperature (°C)**: Battery temperature in Celsius.
-- **Current (A)**: Positive values represent discharging; negative values represent charging.
-- **Fan Speed (RPM)**: Cooling system's fan speed in revolutions per minute.
+- **SOC (%)**: State of Charge of the battery (in percentage), indicating the battery's available capacity.
+- **Temperature (°C)**: Battery temperature in Celsius, critical for thermal management.
+- **Current (A)**: 
+  - Positive values represent **discharging** (battery providing power).  
+  - Negative values represent **charging** (battery receiving power).  
+- **Fan Speed (RPM)**: Cooling system's fan speed in revolutions per minute, reflecting cooling intensity.
+- **Pump Duty Cycle (%)**: The percentage of time the cooling pump is active, influencing heat dissipation.
 - **Mode**:
-  - **Performance**: Optimized for high power output.
-  - **Eco**: Focused on energy efficiency and longevity.
-  - **Balanced**: A middle ground between performance and efficiency.
+  - **Performance**: Optimized for maximum power output and cooling.
+  - **Eco**: Focused on energy efficiency and extending battery life.
+  - **Balanced**: A trade-off between performance and energy efficiency.
 
 ---
 
