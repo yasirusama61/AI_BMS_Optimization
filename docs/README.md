@@ -80,15 +80,27 @@ In this project, we replaced the static threshold-based mode selection logic wit
 
 ### 📊 Data for Mode Selection
 
-The training dataset for the mode selection model includes the following key features:
 
-| **Feature**       | **Description**                               |
-|--------------------|-----------------------------------------------|
-| `SOC`             | State of Charge (%)                          |
-| `Temperature`     | Predicted battery temperature (°C)           |
-| `Current`         | Current draw (A)                             |
-| `CoolingIntensity`| Required cooling intensity (e.g., Low/High)  |
-| `Mode`            | Target mode (`Performance`, `Eco`, `Balanced`)|
+The mode selection model is trained on a comprehensive dataset with the following key features:
+
+| 🔑 **Feature**         | 🌟 **Description**                                          |
+|------------------------|------------------------------------------------------------|
+| **`SOC`**              | **State of Charge (%)**: Indicates the battery's charge level. |
+| **`Temperature`**      | **Predicted Battery Temperature (°C)**: Key factor for thermal management. |
+| **`Current`**          | **Current Draw (A)**: Positive for discharging, negative for charging. |
+| **`FanSpeed`**         | **Fan Speed (RPM)**: Reflects the cooling system's fan intensity. |
+| **`PumpDutyCycle`**    | **Pump Duty Cycle (%)**: Percentage of time the pump is active for cooling. |
+| **`CoolingIntensity`** | **Cooling Intensity**: Defines the cooling level (`Low` or `High`). |
+| **`Mode`**             | **Target Mode**: The operational mode (`Performance`, `Eco`, `Balanced`). |
+
+#### 🛠️ **How These Features Are Used**:
+- **`SOC` & `Temperature`**: Drive the selection of the most efficient or performance-oriented mode.
+- **`Current`**: Helps manage discharging/charging scenarios and mode transitions.
+- **`FanSpeed` & `PumpDutyCycle`**: Regulate the cooling system to maintain thermal efficiency.
+- **`CoolingIntensity`**: Adjusts dynamically to match mode-specific requirements.
+- **`Mode`**: Acts as the target variable for supervised learning.
+
+This dataset enables the **mode selection model** to make real-time, data-driven decisions for optimizing battery performance, thermal regulation, and longevity.
 
 Here’s a snapshot of the data used to train the mode selection model:
 
