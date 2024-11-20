@@ -183,6 +183,17 @@ By leveraging a **state-of-the-art Gradient Boosting Model**, this project achie
 
 ---
 
+### 🧮 **Confusion Matrix**
+
+The confusion matrix below illustrates the performance of the mode selection model, showing how accurately it predicts each mode based on the dataset:
+
+![Confusion Matrix](../images/confusion_matrix_modes.png)
+
+#### **Purpose**:
+- Highlights the model's accuracy for each mode (Performance, Eco, Balanced).
+- Identifies areas where the model performs well or needs improvement.
+
+
 #### 📊 **Feature Importance**
 
 Below is a bar chart showing the importance of each feature used in the mode selection model:
