@@ -234,16 +234,33 @@ The AI Battery Management System (AI BMS) provides real-time predictions and dyn
 
 ### 🖼️ **Sample Output**
 
-| **Step** | **Mode**      | **Predicted Temp** | **Cooling** | **Adjusted Current** | **Warnings**                                         |
-|----------|---------------|--------------------|-------------|-----------------------|-----------------------------------------------------|
-| 0        | Balanced      | 25.21°C           | Low         | 35.00 A              |                                                     |
-| 1        | Balanced      | 34.70°C           | High        | 35.00 A              |                                                     |
-| 2        | Balanced      | 38.89°C           | High        | 35.00 A              | ⚠️ Exceeding temperature limit in Balanced mode     |
-| 3        | Balanced      | 32.04°C           | Low         | 35.00 A              |                                                     |
-| 4        | Balanced      | 34.95°C           | High        | 35.00 A              |                                                     |
-| 13       | Balanced      | 36.47°C           | High        | 35.00 A              | ⚠️ Exceeding temperature limit in Balanced mode     |
-| 14       | Balanced      | 37.52°C           | High        | 35.00 A              | ⚠️ Exceeding temperature limit in Balanced mode     |
-| 22       | Balanced      | 36.20°C           | High        | 35.00 A              | ⚠️ Exceeding temperature limit in Balanced mode     |
+Below is a sample dataset showing real-time battery conditions and corresponding mode selections:
+
+| **SOC (%)** | **Temperature (°C)** | **Current (A)** | **Fan Speed (RPM)** | **Mode**       |
+|-------------|-----------------------|-----------------|----------------------|----------------|
+| 82          | 34.5                 | 45              | 3000                | Performance    |
+| 60          | 30.2                 | -20             | 1200                | Eco            |
+| 72          | 31.8                 | 30              | 2000                | Balanced       |
+| 85          | 37.2                 | 50              | 3200                | Performance    |
+| 68          | 28.0                 | -15             | 1000                | Eco            |
+| 70          | 32.0                 | 35              | 2200                | Balanced       |
+| 75          | 33.5                 | -25             | 1500                | Eco            |
+| 55          | 27.5                 | -18             | 1000                | Eco            |
+| 78          | 35.8                 | 42              | 2800                | Performance    |
+| 88          | 38.0                 | 55              | 3500                | Performance    |
+
+---
+
+### 📋 **Legend**
+
+- **SOC (%)**: State of Charge of the battery (in percentage).
+- **Temperature (°C)**: Battery temperature in Celsius.
+- **Current (A)**: Positive values represent discharging; negative values represent charging.
+- **Fan Speed (RPM)**: Cooling system's fan speed in revolutions per minute.
+- **Mode**:
+  - **Performance**: Optimized for high power output.
+  - **Eco**: Focused on energy efficiency and longevity.
+  - **Balanced**: A middle ground between performance and efficiency.
 
 ---
 
