@@ -92,20 +92,7 @@ The training dataset for the mode selection model includes the following key fea
 
 Here’s a snapshot of the data used to train the mode selection model:
 
-
-| **SOC (%)** | **Temperature (°C)** | **Current (A)** | **Fan Speed (RPM)** | **Pump Duty Cycle (%)** | **Mode**       |
-|-------------|-----------------------|-----------------|----------------------|--------------------------|----------------|
-| 82          | 34.5                 | 45              | 3000                | 85                       | Performance    |
-| 60          | 30.2                 | -20             | 1200                | 50                       | Eco            |
-| 72          | 31.8                 | 30              | 2000                | 65                       | Balanced       |
-| 85          | 37.2                 | 50              | 3200                | 90                       | Performance    |
-| 68          | 28.0                 | -15             | 1000                | 40                       | Eco            |
-| 70          | 32.0                 | 35              | 2200                | 60                       | Balanced       |
-| 75          | 33.5                 | -25             | 1500                | 55                       | Eco            |
-| 55          | 27.5                 | -18             | 1000                | 35                       | Eco            |
-| 78          | 35.8                 | 42              | 2800                | 80                       | Performance    |
-| 88          | 38.0                 | 55              | 3500                | 95                       | Performance    |
-
+![Data snapshot](../images/data_snapshot.png)
 ---
 
 ### 📋 **Legend**
